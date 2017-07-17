@@ -1,0 +1,16 @@
+{
+  "display_name": "EpiData PySpark",
+  "language": "python",
+  "argv": [ "python", "-m", "ipykernel", "-f", "{connection_file}" ],
+  "env": {
+    "SPARK_MASTER": "spark://127.0.0.1:7077",
+    "PYSPARK": "/home/ubuntu/spark-2.1.0-bin-hadoop2.6/bin/pyspark",
+    "SPARK_HOME": "/home/ubuntu/spark-2.1.0-bin-hadoop2.6",
+    "EPIDATA_PYTHON_HOME": "/home/ubuntu/epidata/python",
+    "EPIDATA_IPYTHON_HOME": "/home/ubuntu/epidata/ipython",
+    "PYSPARK_PYTHON": "/home/ubuntu/epidata/venv/bin/python",
+    "SPARK_CONF_DIR": "/home/ubuntu/epidata/spark/conf/",
+    "PYTHONPATH": ":/home/ubuntu/spark-2.1.0-bin-hadoop2.6/python:/home/ubuntu/spark-2.1.0-bin-hadoop2.6/python/build:/home/ubuntu/spark-2.1.0-bin-hadoop2.6/python/lib/py4j-0.10.4-src.zip",
+    "PYTHONSTARTUP": "/home/ubuntu/epidata/jupyter/setup.py"
+  }
+}
