@@ -15,7 +15,7 @@ echo spark.driver.extraJavaOptions -Dderby.system.home=/tmp/derby >> $SPARK_HOME
 echo "installing EpiData application"
 
 # Install EpiData
-git clone https://srinibadri@bitbucket.org/srinibadri/epidata.git /home/ubuntu/epidata
+git clone https://github.com/epidataio/epidata-community.git /home/ubuntu/epidata
 cd /home/ubuntu/epidata
 virtualenv --system-site-packages venv
 sbt "project spark" assembly
@@ -39,8 +39,9 @@ pip install -r /home/ubuntu/epidata-install/config/requirements.txt
 
 deactivate
 cd /home/ubuntu
-export JUPYTER_CONFIG_DIR=/home/ubuntu/test/.jupyter
-sudo chown -R ubuntu:ubuntu /home/ubuntu/.local/
+
+#export JUPYTER_CONFIG_DIR=/home/ubuntu/test/.jupyter
+#sudo chown -R ubuntu:ubuntu /home/ubuntu/.local/
 
 # End of Script
 
