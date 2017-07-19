@@ -1,32 +1,13 @@
 #!/bin/sh
 
-# Scipt for installing required components during an EC2 instance launch. The script can be run by specifying it in 'User data' field via AWS EC2 Console or CLI commands
-
-# Install AWS CodeDeploy
-apt-get -y install ruby2.0
-apt-get install wget
-cd /home/ubuntu
-#aws s3 cp s3://aws-codedeploy-us-west-1/latest/install . --region us-west-1
-wget https://aws-codedeploy-us-west-1.s3.amazonaws.com/latest/install
-chmod +x ./install
-./install auto
-service codedeploy-agent status
+# Scipt for installing required components for EpiData
 
 # Install Java
 add-apt-repository -y ppa:webupd8team/java
 apt-get update
 echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections
-#echo debconf shared/accepted-oracle-license-v1.1 seen true | debconf-set-selections
 apt-get install --yes --force-yes oracle-java8-installer
-#sudo su - -c "echo export JAVA_HOME=/usr/lib/jvm/java-7-oracle >> /etc/environment"
 echo export JAVA_HOME=/usr/lib/jvm/java-8-oracle >> /etc/environment
-
-# scala install
-#apt-get remove scala-library scala
-#wget www.scala-lang.org/files/archive/scala-2.10.4.deb
-#dpkg -i scala-2.10.4.deb
-#apt-get update
-#apt-get --yes --force-yes install scala
 
 # Install sbt
 echo "deb https://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.list.d/sbt.list
@@ -52,10 +33,8 @@ chown -R ubuntu:ubuntu /home/ubuntu/apache-cassandra-2.2.9
 
 # Install Docker
 echo deb https://apt.dockerproject.org/repo ubuntu-trusty main >> /etc/apt/sources.list.d/docker.list
-#sudo su -c "echo 'deb https://apt.dockerproject.org/repo ubuntu-trusty main' >> /etc/apt/sources.list.d/docker.list"
 apt-get update
 apt-get --yes --force-yes install docker-engine=1.9.1-0~trusty
-#sleep 5
 usermod -aG docker ubuntu
 service docker restart
 sleep 10
