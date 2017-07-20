@@ -29,7 +29,7 @@ apt-get --yes --force-yes install openssl
 apt-get --yes --force-yes install git
 
 # Install Cassandra 2.2.9 
-wget http://apache.claz.org/cassandra/2.2.9/apache-cassandra-2.2.9-bin.tar.gz
+wget -P /home/ubuntu/ -q  http://apache.claz.org/cassandra/2.2.9/apache-cassandra-2.2.9-bin.tar.gz
 chown ubuntu:ubuntu /home/ubuntu/apache-cassandra-2.2.9-bin.tar.gz
 tar xzvf /home/ubuntu/apache-cassandra-2.2.9-bin.tar.gz  -C /home/ubuntu/
 chown -R ubuntu:ubuntu /home/ubuntu/apache-cassandra-2.2.9
@@ -48,7 +48,7 @@ echo export DOCKER_HOST_IP=`ifconfig docker0 | awk 'NR==2 {print $2}' | sed s/ad
 wget -P /home/ubuntu/ -q http://d3kbcqa49mib13.cloudfront.net/spark-2.1.0-bin-hadoop2.6.tgz
 chown ubuntu:ubuntu /home/ubuntu/spark-2.1.0-bin-hadoop2.6.tgz
 tar xzvf /home/ubuntu/spark-2.1.0-bin-hadoop2.6.tgz -C /home/ubuntu/
-chown -R ubuntu:ubuntu spark-2.1.0-bin-hadoop2.6
+chown -R ubuntu:ubuntu /home/ubuntu/spark-2.1.0-bin-hadoop2.6
 echo export PATH=$PATH:/home/ubuntu/apache-cassandra-2.2.9/bin:/home/ubuntu/spark-2.1.0-bin-hadoop2.6/bin >> /home/ubuntu/.profile
 echo export SPARK_HOME=/home/ubuntu/spark-2.1.0-bin-hadoop2.6  >> /home/ubuntu/.profile
 echo export PYSPARK_PYTHON=/home/ubuntu/epidata/venv/bin/python >> /home/ubuntu/.profile
