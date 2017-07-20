@@ -4,7 +4,7 @@
 mkdir -p /var/local/epidata
 mkdir -p /var/local/epidata/tutorials
 chown -R ubuntu:ubuntu /var/local/epidata/
-cp -r /home/ubuntu/epidata/ipython/home/* /var/local/epidata/tutorials
+cp -r /home/ubuntu/epidata/ipython/home/* /var/local/epidata
 
 # Generate self signed SSL certificate
 openssl genrsa -des3 -passout pass:x -out epidata_self_signed.pass.key 2048
