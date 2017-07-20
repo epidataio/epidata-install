@@ -9,6 +9,9 @@ echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selec
 apt-get install --yes --force-yes oracle-java8-installer
 echo export JAVA_HOME=/usr/lib/jvm/java-8-oracle >> /etc/environment
 
+# Install wget
+apt-get install wget
+
 # Install sbt
 echo "deb https://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.list.d/sbt.list
 apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 642AC823
