@@ -38,7 +38,7 @@ pip install -r /home/ubuntu/epidata-install/config/requirements.txt
 
 # Generate play secret key
 sed -i_bak -e '/application.secret/d' /home/ubuntu/epidata/play/conf/application.conf
-./key_gen.sh >> /home/ubuntu/epidata/play/conf/application.conf
+/home/ubuntu/epidata-install/scripts/key_gen.sh >> /home/ubuntu/epidata/play/conf/application.conf
 rm /home/ubuntu/epidata/play/conf/application.conf_bak
 
 deactivate
