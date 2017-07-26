@@ -14,8 +14,8 @@ apt-get install wget
 
 # scala install
 apt-get remove scala-library scala
-wget www.scala-lang.org/files/archive/scala-2.11.8.deb
-dpkg -i scala-2.11.8.deb
+wget -P /home/ubuntu -q www.scala-lang.org/files/archive/scala-2.11.8.deb
+dpkg -i /home/ubuntu/scala-2.11.8.deb
 apt-get update
 apt-get --yes --force-yes install scala
 
