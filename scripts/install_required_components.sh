@@ -12,6 +12,13 @@ echo export JAVA_HOME=/usr/lib/jvm/java-8-oracle >> /etc/environment
 # Install wget
 apt-get install wget
 
+# scala install
+apt-get remove scala-library scala
+wget www.scala-lang.org/files/archive/scala-2.11.8.deb
+dpkg -i scala-2.11.8.deb
+apt-get update
+apt-get --yes --force-yes install scala
+
 # Install sbt
 echo "deb https://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.list.d/sbt.list
 apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 642AC823

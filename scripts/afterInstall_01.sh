@@ -36,6 +36,11 @@ pip install --upgrade setuptools cython pip
 pip install jupyter==1.0.0 jupyter-console==5.1.0 notebook==5.0.0 'ipython[all]'==5.4.1
 pip install -r /home/ubuntu/epidata-install/config/requirements.txt
 
+# Generate play secret key
+sed -i_bak -e '/application.secret/d' /home/ubuntu/epidata/play/conf/application.conf
+./key_gen.sh >> /home/ubuntu/epidata/play/conf/application.conf
+rm /home/ubuntu/epidata/play/conf/application.conf_bak
+
 deactivate
 cd /home/ubuntu
 
