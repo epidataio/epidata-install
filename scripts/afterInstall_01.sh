@@ -18,7 +18,6 @@ echo "installing EpiData application"
 git clone https://github.com/epidataio/epidata-community.git /home/ubuntu/epidata
 cd /home/ubuntu/epidata
 virtualenv --system-site-packages venv
-sbt "project spark" assembly
 cd ..
 
 # Install Python 2 packages in vitual environment
