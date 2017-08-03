@@ -62,12 +62,12 @@ sudo service kafka start
 sudo update-rc.d kafka defaults
 
 # Generate play secret key
-/home/ubuntu/epidata-install/scripts/key_gen.sh | while read key; do
+/home/ubuntu/epidata-install/scripts/subscripts/key_gen.sh | while read key; do
 sed -i "/application.secret=/c\application.secret=\"$key\"" /home/ubuntu/epidata/play/conf/application.conf
 done
 
 # Generate token
-/home/ubuntu/epidata-install/scripts/key_gen.sh | while read token; do
+/home/ubuntu/epidata-install/scripts/subscripts/key_gen.sh | while read token; do
 sed -i "/application.api.tokens=/c\application.api.tokens=[\"$token\"]" /home/ubuntu/epidata/play/conf/application.conf;
 sed -i "/c.NotebookApp.token/c\c.NotebookApp.token = '$token'" /home/ubuntu/epidata/jupyter/config.py;
 done

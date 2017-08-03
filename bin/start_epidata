@@ -1,5 +1,6 @@
 #! /bin/bash
 
+# Launch Play
 cd /home/ubuntu/epidata
 . venv/bin/activate
 screen -S playapp -d -m  bash -c 'sbt "project play" run'

@@ -1,6 +1,6 @@
 #! /bin/bash
 
-# Launch Play
+# Compile and package epidata
 echo "starting epidata-play compile and test"
 cd /home/ubuntu/epidata
 . venv/bin/activate
@@ -10,4 +10,6 @@ sbt '++ 2.10.6 models/compile' 'play/compile' '++ 2.11.8 spark/compile' 'ipython
 sbt "project spark" assembly
 sbt "project scripts" assembly
 sbt "project ipython" build
-sbt '++ 2.10.6 play/test' '++ 2.11.8 spark/test' 'ipython/test'
+
+# Run tests
+#sbt '++ 2.10.6 play/test' '++ 2.11.8 spark/test' 'ipython/test'
