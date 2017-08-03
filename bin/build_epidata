@@ -1,0 +1,15 @@
+#! /bin/bash
+
+# Compile and package epidata
+echo "starting epidata-play compile and test"
+cd /home/ubuntu/epidata
+. venv/bin/activate
+echo `pwd`
+echo `which python`
+sbt '++ 2.10.6 models/compile' 'play/compile' '++ 2.11.8 spark/compile' 'ipython/compile'
+sbt "project spark" assembly
+sbt "project scripts" assembly
+sbt "project ipython" build
+
+# Run tests
+#sbt '++ 2.10.6 play/test' '++ 2.11.8 spark/test' 'ipython/test'

@@ -10,12 +10,9 @@ Install Steps
     - memory of 8GB or larger
     - root storage of 30GB or larger
 
-- Copy epidata-install contents to home folder. Home folder structure:
-    - config
-    - scripts
+- Clone epidata-install to ubuntu user's home directory (/home/ubuntu).
 
 - Install Application:
-    - cd to scripts folder
-    - Run scripts 1_xx through 4_xx in sequence
-    - Specify GitHub user ID for default user in applicationStart_02.sh and epidata/play/app/providers/DemoProvider.scala
-    - Run scripts 5_xx through 7_xx in sequence
+    - cd to /home/ubuntu/epidata-install/scripts folder
+    - Specify GitHub user ID for 'DefaultUser' in epidata-install/scripts/subscripts/applicationStart_01.sh and epidata/play/app/providers/DemoProvider.scala. To find GitHub user ID for a user, visit https://caius.github.io/github_id/
+    - Run scripts 1_xx through 6_xx in sequence

@@ -1,0 +1,17 @@
+#! /bin/bash
+
+# Launch Play
+cd /home/ubuntu/epidata
+. venv/bin/activate
+screen -S playapp -d -m  bash -c 'sbt "project play" run'
+
+# Launch Jupyter Notebook
+. /home/ubuntu/.profile
+cd /home/ubuntu/epidata/jupyter
+. jenv/bin/activate
+./start_notebook.sh & 
+
+echo "Play started"
+echo "Jupyter-notebook started"
+
+

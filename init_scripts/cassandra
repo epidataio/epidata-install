@@ -1,0 +1,75 @@
+#! /bin/bash
+
+KNAME="cassandra"
+
+KCMD="/home/ubuntu/apache-cassandra-2.2.9/bin/cassandra -f"
+KPIDFILE="/var/run/$KNAME.pid"
+KLOGFILE="/var/log/$KNAME.log"
+
+recursiveKill() { 
+  CPIDS=$(pgrep -P $1);
+  for PID in $CPIDS
+  do
+    recursiveKill $PID
+  done
+  sleep 3 && kill -9 $1 2>/dev/null & 
+  kill $1 2>/dev/null 
+}
+
+function kstart {
+  echo "Starting $KNAME ..."
+  if [ -f "$KPIDFILE" ]; then
+    echo "Already running according to $KPIDFILE"
+    exit 1
+  else
+    /bin/su -m -c "$KCMD" > $KLOGFILE 2>&1 &
+    PID=$!
+    echo $PID > $KPIDFILE
+    echo "Started $KNAME with pid $PID - Logging to $KLOGFILE"
+  fi
+}
+
+function kstop {
+  echo "Stopping $KNAME ..."
+  if [ ! -f $KPIDFILE ]; then
+    echo "Already stopped!"
+  else
+    PID=`cat $KPIDFILE`
+    recursiveKill $PID
+    rm -f $KPIDFILE
+    echo "Stopped $KNAME"
+  fi
+}
+
+function kstatus {
+  if [ -f "$KPIDFILE" ]; then
+    PID=`cat $KPIDFILE`
+    if [ "$(/bin/ps --no-headers -p $PID)" ]; then
+      echo "$KNAME is running (pid : $PID)"
+    else
+      echo "Pid $PID found in $KPIDFILE, but not running."
+    fi
+  else
+    echo "$KNAME is NOT running"
+  fi
+}
+
+case "$1" in
+  start)
+    kstart
+    ;;
+  stop)
+    kstop
+    ;;
+  restart)
+    $0 stop
+    sleep 3
+    $0 start
+    ;;
+  status)
+    kstatus
+    ;;
+  *)
+    echo "Usage: /etc/init.d/cassandra {start|stop|restart|status}" && exit 1
+    ;;
+esac
