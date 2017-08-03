@@ -38,7 +38,6 @@ pip install -r /home/ubuntu/epidata-install/config/requirements.txt
 
 deactivate
 cd /home/ubuntu
-export JUPYTER_CONFIG_DIR=/home/ubuntu/test/.jupyter
 sudo chown -R ubuntu:ubuntu /home/ubuntu/.local/
 
 # set up Cassandra Config file
