@@ -50,7 +50,7 @@ sudo cp /home/ubuntu/epidata-install/init_scripts/cassandra /etc/init.d/.
 sudo chmod +x /etc/init.d/cassandra
 sudo service cassandra start
 sudo update-rc.d cassandra defaults
-sleep 15
+sleep 20
 
 # Set up Cassandra password
 /home/ubuntu/apache-cassandra-2.2.9/bin/cqlsh -u cassandra -p cassandra -e "ALTER USER cassandra WITH PASSWORD 'epidata'"

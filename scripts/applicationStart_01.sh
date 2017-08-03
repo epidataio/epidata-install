@@ -16,9 +16,6 @@ cd /home/ubuntu/epidata-install/bin/
 ./build_epidata
 ./start_epidata
 
-# Set up Cassandra keyspace replication and password
-/home/ubuntu/apache-cassandra-2.2.9/bin/cqlsh -u cassandra -p epidata -e "ALTER KEYSPACE epidata_development WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 1 }"
-
 export SERVER_NAME=`ifconfig eth0 2>/dev/null|awk '/inet addr:/ {print $2}'|sed 's/addr://'`
 iteration=0
 response=0
@@ -28,5 +25,8 @@ response=$(curl -k -s -o /dev/null -w %{http_code} https://$SERVER_NAME)
 echo iteration $iteration, response $response, server $SERVER_NAME
 sleep 5
 done
+
+# Set up Cassandra keyspace replication and password
+/home/ubuntu/apache-cassandra-2.2.9/bin/cqlsh -u cassandra -p epidata -e "ALTER KEYSPACE epidata_development WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 1 }"
 
 # End of Script

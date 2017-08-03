@@ -10,11 +10,6 @@ cd /home/ubuntu/epidata/jupyter
 . jenv/bin/activate
 ./start_notebook.sh & 
 
-# Launch JupyterHub
-#cd /home/ubuntu/epidata/jupyterhub
-#. jupyterenv/bin/activate
-#./start_hub.sh & 
-
 echo "Play started"
 echo "Jupyter-notebook started"
 
