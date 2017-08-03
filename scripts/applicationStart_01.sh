@@ -26,7 +26,8 @@ echo iteration $iteration, response $response, server $SERVER_NAME
 sleep 5
 done
 
-# Set up Cassandra keyspace replication and password
+# Set up Cassandra keyspace replication and default user
 /home/ubuntu/apache-cassandra-2.2.9/bin/cqlsh -u cassandra -p epidata -e "ALTER KEYSPACE epidata_development WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 1 }"
+/home/ubuntu/apache-cassandra-2.2.9/bin/cqlsh -u cassandra -p epidata -e "insert into epidata_development.users (id) values ('DefaultUser')"
 
 # End of Script

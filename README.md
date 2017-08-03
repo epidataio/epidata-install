@@ -17,5 +17,5 @@ Install Steps
 - Install Application:
     - cd to scripts folder
     - Run scripts 1_xx through 4_xx in sequence
-    - Specify GitHub user ID for default user in applicationStart_02.sh and epidata/play/app/providers/DemoProvider.scala
+    - Specify GitHub user ID for 'DefaultUser' in applicationStart_02.sh and epidata/play/app/providers/DemoProvider.scala. To find GitHub user ID for a user, visit https://caius.github.io/github_id/
     - Run scripts 5_xx through 7_xx in sequence
