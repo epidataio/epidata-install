@@ -36,16 +36,41 @@ pip install --upgrade setuptools cython pip
 pip install jupyter==1.0.0 jupyter-console==5.1.0 notebook==5.0.0 'ipython[all]'==5.4.1
 pip install -r /home/ubuntu/epidata-install/config/requirements.txt
 
-# Generate play secret key
-sed -i_bak -e '/application.secret/d' /home/ubuntu/epidata/play/conf/application.conf
-/home/ubuntu/epidata-install/scripts/key_gen.sh >> /home/ubuntu/epidata/play/conf/application.conf
-rm /home/ubuntu/epidata/play/conf/application.conf_bak
-
 deactivate
 cd /home/ubuntu
+export JUPYTER_CONFIG_DIR=/home/ubuntu/test/.jupyter
+sudo chown -R ubuntu:ubuntu /home/ubuntu/.local/
 
-#export JUPYTER_CONFIG_DIR=/home/ubuntu/test/.jupyter
-#sudo chown -R ubuntu:ubuntu /home/ubuntu/.local/
+# set up Cassandra Config file
+sed -i "/authenticator:/c\authenticator: PasswordAuthenticator" /home/ubuntu/apache-cassandra-2.2.9/conf/cassandra.yaml
+sed -i "/authorizer:/c\authorizer: AllowAllAuthorizer" /home/ubuntu/apache-cassandra-2.2.9/conf/cassandra.yaml
+
+# Start Cassandra
+sudo cp /home/ubuntu/epidata-install/init_scripts/cassandra /etc/init.d/.
+sudo chmod +x /etc/init.d/cassandra
+sudo service cassandra start
+sudo update-rc.d cassandra defaults
+
+# Set up Cassandra keyspace replication and password
+/home/ubuntu/apache-cassandra-2.2.9/bin/cqlsh -u cassandra -p cassandra -e "ALTER KEYSPACE epidata_development WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 1 }"
+/home/ubuntu/apache-cassandra-2.2.9/bin/cqlsh -u cassandra -p cassandra -e "ALTER USER cassandra WITH PASSWORD 'epidata'"
+
+# Start Zookeeper and Kafka
+sudo cp /home/ubuntu/epidata-install/init_scripts/kafka /etc/init.d/.
+sudo chmod +x /etc/init.d/kafka
+sudo service kafka start
+sudo update-rc.d kafka defaults
+
+# Generate play secret key
+/home/ubuntu/epidata-install/scripts/key_gen.sh | while read key; do
+sed -i "/application.secret=/c\application.secret=\"$key\"" /home/ubuntu/epidata/play/conf/application.conf
+done
+
+# Generate token
+/home/ubuntu/epidata-install/scripts/key_gen.sh | while read token; do
+sed -i "/application.api.tokens=/c\application.api.tokens=[\"$token\"]" /home/ubuntu/epidata/play/conf/application.conf;
+sed -i "/c.NotebookApp.token/c\c.NotebookApp.token = '$token'" /home/ubuntu/epidata/jupyter/config.py;
+done
 
 # End of Script
 
