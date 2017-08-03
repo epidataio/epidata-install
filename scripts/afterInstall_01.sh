@@ -50,9 +50,9 @@ sudo cp /home/ubuntu/epidata-install/init_scripts/cassandra /etc/init.d/.
 sudo chmod +x /etc/init.d/cassandra
 sudo service cassandra start
 sudo update-rc.d cassandra defaults
+sleep 15
 
-# Set up Cassandra keyspace replication and password
-/home/ubuntu/apache-cassandra-2.2.9/bin/cqlsh -u cassandra -p cassandra -e "ALTER KEYSPACE epidata_development WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 1 }"
+# Set up Cassandra password
 /home/ubuntu/apache-cassandra-2.2.9/bin/cqlsh -u cassandra -p cassandra -e "ALTER USER cassandra WITH PASSWORD 'epidata'"
 
 # Start Zookeeper and Kafka
