@@ -13,17 +13,17 @@ SPARK_LOCAL_IP=$LOCAL_HOST_IP  SPARK_WORKER_WEBUI_PORT=18081 $SPARK_HOME/sbin/st
 
 # Launch Play and Jupyter Notebook
 cd /home/ubuntu/epidata-install/bin/
-./build_epidata
-./start_epidata
+./epidata build
+./epidata start
 
 export SERVER_NAME=`ifconfig eth0 2>/dev/null|awk '/inet addr:/ {print $2}'|sed 's/addr://'`
 iteration=0
 response=0
 while [ $response -ne 200 -a $iteration -lt 6 ]; do
-iteration=`expr $iteration + 1`
-response=$(curl -k -s -o /dev/null -w %{http_code} https://$SERVER_NAME)
-echo iteration $iteration, response $response, server $SERVER_NAME
-sleep 5
+  iteration=`expr $iteration + 1`
+  response=$(curl -k -s -o /dev/null -w %{http_code} https://$SERVER_NAME)
+  echo iteration $iteration, response $response, server $SERVER_NAME
+  sleep 5
 done
 
 # Set up Cassandra keyspace replication and default user
