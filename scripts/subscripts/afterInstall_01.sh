@@ -30,11 +30,12 @@ pip install autopep8 'ipython[all]'==3.2.3 pandas==0.19.2 oauth2 terminado kafka
 cd /home/ubuntu/epidata/jupyter
 virtualenv --system-site-packages jenv
 . jenv/bin/activate
-mkdir /home/ubuntu/epidata/jupyter/jenv/share/jupyter/kernels/pyspark/
-cp /home/ubuntu/epidata-install/config/kernel.json /home/ubuntu/epidata/jupyter/jenv/share/jupyter/kernels/pyspark/kernel.json
 pip install --upgrade setuptools cython pip
 pip install jupyter==1.0.0 jupyter-console==5.1.0 notebook==5.0.0 'ipython[all]'==5.4.1
 pip install -r /home/ubuntu/epidata-install/config/requirements.txt
+mkdir -p /home/ubuntu/epidata/jupyter/jenv/share/jupyter/kernels/pyspark/
+cp /home/ubuntu/epidata-install/config/kernel.json /home/ubuntu/epidata/jupyter/jenv/share/jupyter/kernels/pyspark/kernel.json
+
 
 deactivate
 cd /home/ubuntu
