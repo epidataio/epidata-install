@@ -36,7 +36,7 @@ apt-get --yes --force-yes install openssl
 apt-get --yes --force-yes install git
 
 # Install Cassandra 2.2.9 
-wget -P /home/ubuntu/ -q  http://apache.claz.org/cassandra/2.2.9/apache-cassandra-2.2.9-bin.tar.gz
+wget -P /home/ubuntu/ -q  http://archive.apache.org/dist/cassandra/2.2.9//apache-cassandra-2.2.9-bin.tar.gz
 chown ubuntu:ubuntu /home/ubuntu/apache-cassandra-2.2.9-bin.tar.gz
 tar xzvf /home/ubuntu/apache-cassandra-2.2.9-bin.tar.gz  -C /home/ubuntu/
 chown -R ubuntu:ubuntu /home/ubuntu/apache-cassandra-2.2.9
