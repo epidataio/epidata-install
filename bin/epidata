@@ -71,8 +71,8 @@ function stop {
 }
 
 function restart {
-	start
 	stop
+	start
 }
 ### End functions ###
 
