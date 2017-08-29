@@ -4,11 +4,11 @@ Installation and launch scripts for setting up a standalone instance of EpiData
 
 Docker Container
 -----------------
-The epidata-community docker image is available as a stand-alone package with all code and required components. To build and start a docker container, simply execute the command shown below (replacing 'epidata123' with a custom token):  
+The epidata-community docker image is available as a stand-alone package with all code and required components. To build and start a docker container, simply execute the command (replacing 'epidata123' with a custom token):  
 docker run -p 443:443 -it -e token=epidata123 epidataio/epidata-community:0.10.0
 
-Install Scripts
-----------------
+Installation Scripts
+---------------------
 - Launch a server with the following settings:
     - Ubuntu 14.04
     - memory of 8GB or larger
