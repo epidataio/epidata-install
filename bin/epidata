@@ -45,7 +45,7 @@ function start {
 	# Launch Play
 	cd /home/ubuntu/epidata
 	. venv/bin/activate
-	screen -S playapp -d -m  bash -c 'sbt "project play" run'
+	screen -S playapp -d -m  bash -c '. /home/ubuntu/.profile;sbt "project play" run'
 	echo "Play started"
 
 	# Launch Jupyter Notebook
