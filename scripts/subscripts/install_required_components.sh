@@ -66,6 +66,11 @@ echo export PYTHONPATH=$PYTHONPATH:/home/ubuntu/spark-2.1.0-bin-hadoop2.6/python
 cp /home/ubuntu/epidata-install/jars/guava-19.0.jar /home/ubuntu/spark-2.1.0-bin-hadoop2.6/jars/.
 mv /home/ubuntu/spark-2.1.0-bin-hadoop2.6/jars/guava-14.0.1.jar /home/ubuntu/spark-2.1.0-bin-hadoop2.6/jars/guava-14.0.1.jar_
 
+# create LD_LIBRARY_PATH
+mkdir /home/ubuntu/LD_LIBRARY
+cp /home/ubuntu/epidata-install/jars/libjnotify.so /home/ubuntu/LD_LIBRARY/libjnotify.so
+echo export LD_LIBRARY_PATH=/home/ubuntu/LD_LIBRARY/ >> /home/ubuntu/.profile
+
 # Install Kafka
 wget -P /home/ubuntu/ -q http://mirror.cc.columbia.edu/pub/software/apache/kafka/0.10.2.0/kafka_2.10-0.10.2.0.tgz
 tar xzvf /home/ubuntu/kafka_2.10-0.10.2.0.tgz -C /home/ubuntu/

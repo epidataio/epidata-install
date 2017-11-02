@@ -49,7 +49,8 @@ server {
 
                 proxy_intercept_errors on;
                 error_page 404 /404;
-                error_page 400 401 402 403 500 501 502 503 504 /error;
+                error_page 400 402 403 500 501 502 503 504 /error;
+                error_page 401 /unauthorized;
         }
 
         location / {
