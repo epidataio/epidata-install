@@ -31,11 +31,8 @@ cd /home/ubuntu/epidata/jupyter
 virtualenv --system-site-packages jenv
 . jenv/bin/activate
 pip install --upgrade setuptools cython pip
-pip install jupyter==1.0.0 jupyter-console==5.1.0 notebook==5.0.0 'ipython[all]'==5.4.1
+pip install jupyter-console==5.1.0 notebook==5.0.0 'ipython[all]'==5.4.1
 pip install -r /home/ubuntu/epidata-install/config/requirements.txt
-mkdir -p /home/ubuntu/epidata/jupyter/jenv/share/jupyter/kernels/pyspark/
-cp /home/ubuntu/epidata-install/config/kernel.json /home/ubuntu/epidata/jupyter/jenv/share/jupyter/kernels/pyspark/kernel.json
-
 
 deactivate
 cd /home/ubuntu
@@ -69,7 +66,6 @@ done
 # Generate token
 /home/ubuntu/epidata-install/scripts/subscripts/key_gen.sh | while read token; do
 sed -i "/application.api.tokens=/c\application.api.tokens=[\"$token\"]" /home/ubuntu/epidata/play/conf/application.conf;
-sed -i "/c.NotebookApp.token/c\c.NotebookApp.token = '$token'" /home/ubuntu/epidata/jupyter/config.py;
 done
 
 # End of Script

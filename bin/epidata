@@ -32,13 +32,6 @@ function status {
    		echo "play is not running!"
    fi
 
-   num_jupyter_process=$(ps aux | grep 'jupyter-notebook' | awk '{print $2}' | wc -l)
-   if (( num_jupyter_process > 1 )); then
-	    echo "jupyter-notebook is running..."
-   else
-   		echo "jupyter-notebook is not running!"
-   fi
-
 }
 
 function start {
@@ -48,13 +41,6 @@ function start {
 	screen -S playapp -d -m  bash -c '. /home/ubuntu/.profile;sbt "project play" run'
 	echo "Play started"
 
-	# Launch Jupyter Notebook
-	. /home/ubuntu/.profile
-	cd /home/ubuntu/epidata/jupyter
-	. jenv/bin/activate
-	screen -S jupyter-notebook -d -m  bash -c './start_notebook.sh'
-	echo "Jupyter-notebook started"
-
 	echo "...."
 	epidata_token=$(grep "application.api" /home/ubuntu/epidata/play/conf/application.conf | sed 's/application.api.tokens=//')
 	echo "List of Epidata Tokens = ${epidata_token}"
@@ -62,12 +48,10 @@ function start {
 }
 
 function stop {
-   # Stop Play and Jupyter Notebook applications
+   # Stop Play applications
 	kill $(ps aux | grep "project play run" | awk '{print $2}' | head -n 2)
-	kill $(ps aux | grep "jupyter-notebook --config config.py" | awk '{print $2}' | head -n 1)
 
 	echo "Play stopped"
-	echo "jupyter-notebok stopped"
 }
 
 function restart {
