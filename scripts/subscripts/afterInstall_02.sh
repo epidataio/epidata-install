@@ -17,7 +17,6 @@ openssl x509 -req -days 365 -in /etc/ssl/certs/epidata_self_signed.csr -signkey 
 # Update Server name
 export SERVER_NAME=`ifconfig eth0 2>/dev/null|awk '/inet addr:/ {print $2}'|sed 's/addr://'`
 sed -i s/server_base_url/$SERVER_NAME/g /home/ubuntu/epidata-install/config/epidata
-sed -i s/server_base_url/$SERVER_NAME/g /home/ubuntu/epidata/jupyter/config.py
 
 # Copy configuration files to nginx folder
 cp -f /home/ubuntu/epidata-install/config/nginx.conf /etc/nginx/

@@ -11,7 +11,7 @@ SPARK_LOCAL_IP=$LOCAL_HOST_IP  SPARK_WORKER_WEBUI_PORT=18081 $SPARK_HOME/sbin/st
 /home/ubuntu/kafka_2.10-0.10.2.0/bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic measurement_keys
 /home/ubuntu/kafka_2.10-0.10.2.0/bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic measurements
 
-# Launch Play and Jupyter Notebook
+# Launch Play
 cd /home/ubuntu/epidata-install/bin/
 ./epidata build
 ./epidata start
