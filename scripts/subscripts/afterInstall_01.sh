@@ -54,6 +54,7 @@ sleep 20
 
 # Set up Cassandra password
 /home/ubuntu/apache-cassandra-2.2.9/bin/cqlsh -u cassandra -p cassandra -e "ALTER USER cassandra WITH PASSWORD 'epidata'"
+# "CREATE ROLE epidata WITH SUPERUSER = true AND LOGIN = true AND PASSWORD = 'epidata';"
 
 # Start Zookeeper and Kafka
 sudo cp /home/ubuntu/epidata-install/init_scripts/kafka /etc/init.d/.
@@ -73,4 +74,3 @@ sed -i "/c.NotebookApp.token/c\c.NotebookApp.token = '$token'" /home/ubuntu/epid
 done
 
 # End of Script
-
